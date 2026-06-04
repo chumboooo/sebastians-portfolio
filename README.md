@@ -1,30 +1,40 @@
-# Sebastian Portfolio
+# Sebastian’s Portfolio
 
-A personal portfolio for Sebastian Davalos, a Computer Engineering student at Florida State University. The site highlights featured projects, awards, experience, skills, and contact links in a clean dark/light responsive interface.
+Personal website for my projects, experience, resume, and contact links.
 
-## Tech Stack
+Live site: https://sebastians-portfolio-six.vercel.app/
 
-- Next.js App Router
-- React
-- TypeScript
-- Tailwind CSS
+## Built With
 
-## Features
+* Next.js
+* React
+* TypeScript
+* Tailwind CSS
+* Vercel
 
-- Responsive single-page portfolio layout
-- Light/dark theme toggle with persisted preference
-- Featured project cards with accessible link modals
-- Awards, experience, toolkit, about, and contact sections
-- Editable content data in one place
+## What’s Included
 
-## Getting Started
+* Featured projects with screenshots and project links
+* Awards section for the NextEra Energy Hackathon
+* Experience and leadership timeline
+* Toolkit/skills section
+* About Me section with personal photos/art
+* Contact links for email, LinkedIn, and GitHub
+* Light/dark mode
+* Responsive layout for desktop and mobile
+
+## Running Locally
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) to review the site.
+Then open:
+
+```bash
+http://localhost:3000
+```
 
 ## Build
 
@@ -35,26 +45,36 @@ npm run build
 
 ## Editing Content
 
-Most portfolio text, links, skills, projects, highlights, and leadership entries live in:
+Most of the site content is stored in:
 
-```text
+```bash
 src/data/site.ts
 ```
 
-Update that file first when changing resume links, project descriptions, contact URLs, or section copy.
+Use that file to update:
 
-Images live in:
+* Project names and descriptions
+* Project links
+* Contact links
+* Skills
+* Experience
+* Awards
+* Resume path
+* Image paths
 
-```text
+Images are stored in:
+
+```bash
 public/images
 ```
 
-The resume file is served at:
+My resume is served from:
 
-```text
+```bash
 /Davalos_Sebastian_Resume.pdf
 ```
 
 ## Deployment
 
-This project is ready to deploy on Vercel. Connect the repository, keep the default Next.js build settings, and Vercel will run `npm run build`.
+This site is deployed with Vercel. Pushing changes to the connected GitHub repo triggers a new deployment.
+
