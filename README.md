@@ -2,7 +2,7 @@
 
 Personal website for my projects, experience, resume, and contact links.
 
-Live site: https://sebastians-portfolio-six.vercel.app/
+Live site: https://sebasad.com/
 
 ## Built With
 
