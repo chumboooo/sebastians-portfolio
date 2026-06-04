@@ -40,7 +40,7 @@ export const site = {
   images: {
     about: [
       {
-        src: "/images/chewie.png",
+        src: "/images/chewie.jpg",
         alt: "Chewie relaxing at home",
         label: "Chewie",
       },

@@ -56,7 +56,6 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 fill
                 sizes="(min-width: 1024px) 1100px, 100vw"
                 className="object-contain p-2 transition duration-200 group-hover:scale-[1.01] sm:p-3"
-                priority={index === 0}
               />
             ) : (
               <div className="px-6 py-10 text-center">
