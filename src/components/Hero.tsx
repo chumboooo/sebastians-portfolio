@@ -25,7 +25,7 @@ export function Hero() {
 
         <RevealOnScroll delay={40}>
           <p className="max-w-3xl text-sm font-bold uppercase tracking-[0.2em] text-[#782f40] dark:text-[#ceb888]">
-            {site.role} · {site.graduation}
+            {site.role} · <span className="whitespace-nowrap">{site.graduation}</span>
           </p>
         </RevealOnScroll>
 

@@ -23,7 +23,7 @@ function SkillGroupIcon({ group }: { group: string }) {
     );
   }
 
-  if (group === "AI/Data") {
+  if (group === "AI / Data") {
     return (
       <svg aria-hidden="true" className={baseClass} viewBox="0 0 24 24" fill="none">
         <path d="M12 4.5v15M6.5 8.5v7M17.5 8.5v7" stroke="currentColor" strokeWidth="1.8" strokeLinecap="round" />
