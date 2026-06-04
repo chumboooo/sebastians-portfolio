@@ -53,7 +53,7 @@ export function Skills() {
           </h2>
         </RevealOnScroll>
 
-        <RevealOnScroll className="grid gap-5 md:grid-cols-2 lg:gap-6" delay={80}>
+        <RevealOnScroll className="grid gap-5 md:grid-cols-2 lg:gap-6" delay={40}>
           {Object.entries(site.skills).map(([group, skills]) => (
             <article
               key={group}

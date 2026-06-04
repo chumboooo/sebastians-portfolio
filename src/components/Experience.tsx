@@ -11,7 +11,7 @@ export function Experience() {
           </h2>
         </RevealOnScroll>
 
-        <RevealOnScroll className="relative border-l border-gray-200 pl-6 dark:border-white/10 sm:pl-8" delay={80}>
+        <RevealOnScroll className="relative border-l border-gray-200 pl-6 dark:border-white/10 sm:pl-8" delay={40}>
           {site.experience.map((item) => (
             <article key={`${item.role}-${item.organization}`} className="relative pb-9 last:pb-0">
               <span className="absolute -left-[1.95rem] top-1 h-3 w-3 rounded-full border-2 border-[#fbfbfa] bg-[#782f40] dark:border-[#101012] dark:bg-[#ceb888] sm:-left-[2.45rem]" />

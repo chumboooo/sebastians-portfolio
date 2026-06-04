@@ -23,25 +23,25 @@ export function Hero() {
           <div className="mb-8 h-px w-24 bg-[#782f40] dark:bg-[#ceb888]" />
         </RevealOnScroll>
 
-        <RevealOnScroll delay={80}>
+        <RevealOnScroll delay={40}>
           <p className="max-w-3xl text-sm font-bold uppercase tracking-[0.2em] text-[#782f40] dark:text-[#ceb888]">
             {site.role} · {site.graduation}
           </p>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={150}>
+        <RevealOnScroll delay={80}>
           <h1 className="mt-6 max-w-5xl text-5xl font-semibold leading-[0.98] tracking-tight text-[#211d1e] dark:text-stone-50 sm:text-7xl lg:text-8xl">
             {site.name}
           </h1>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={230}>
+        <RevealOnScroll delay={120}>
           <p className="mt-6 max-w-3xl text-xl font-semibold leading-8 text-[#4f1f2a] dark:text-[#ceb888] sm:text-2xl">
             {site.focus}
           </p>
         </RevealOnScroll>
 
-        <RevealOnScroll delay={310}>
+        <RevealOnScroll delay={160}>
           <div className="mt-10 flex flex-wrap items-center gap-x-5 gap-y-3">
             {heroLinks.map((link) => (
               <a

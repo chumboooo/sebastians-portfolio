@@ -13,7 +13,7 @@ export function Projects() {
         </RevealOnScroll>
         <div className="grid gap-8 sm:gap-10">
           {site.projects.map((project, index) => (
-            <RevealOnScroll key={project.name} delay={index * 90}>
+            <RevealOnScroll key={project.name} delay={index * 30}>
               <ProjectCard project={project} index={index} />
             </RevealOnScroll>
           ))}
