@@ -63,7 +63,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="inline-flex h-10 items-center gap-2 rounded-full border border-gray-200 bg-white px-3 text-sm font-semibold text-[#211d1e] transition hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-white/15 dark:bg-[#18181b] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
+      className="font-accent inline-flex h-10 items-center gap-2 border border-[#211d1e]/50 bg-white px-3 text-xs text-[#211d1e] transition hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-white/30 dark:bg-[#18181b] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
       aria-label={ariaLabel}
       onClick={toggleTheme}
     >

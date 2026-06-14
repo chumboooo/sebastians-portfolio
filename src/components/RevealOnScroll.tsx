@@ -6,12 +6,14 @@ type RevealOnScrollProps = {
   children: ReactNode;
   className?: string;
   delay?: number;
+  variant?: "default" | "panel";
 };
 
 export function RevealOnScroll({
   children,
   className = "",
   delay = 0,
+  variant = "default",
 }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement | null>(null);
   const isRevealedRef = useRef(false);
@@ -44,8 +46,12 @@ export function RevealOnScroll({
   return (
     <div
       ref={ref}
-      className={`${className} transform-gpu transition-[opacity,transform] duration-[400ms] ease-out motion-reduce:translate-y-0 motion-reduce:opacity-100 motion-reduce:transition-none ${
-        isRevealed ? "translate-y-0 opacity-100" : "translate-y-4 opacity-[0.45]"
+      className={`${className} transform-gpu transition-[opacity,transform] duration-[400ms] ease-out motion-reduce:translate-y-0 motion-reduce:rotate-0 motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none ${
+        isRevealed
+          ? "translate-y-0 rotate-0 scale-100 opacity-100"
+          : variant === "panel"
+            ? "translate-y-3 rotate-[0.25deg] scale-[0.985] opacity-[0.42]"
+            : "translate-y-4 opacity-[0.45]"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >

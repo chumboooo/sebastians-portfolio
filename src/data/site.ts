@@ -1,6 +1,7 @@
 export type Project = {
   name: string;
   label: string;
+  arcLabel?: string;
   description: string;
   focus: string;
   stack: string[];
@@ -16,17 +17,37 @@ export type SiteImage = {
   label: string;
 };
 
+export type ExperienceItem = {
+  role: string;
+  organization: string;
+  dates: string;
+  description: string;
+  category: "Technical Leadership" | "Campus & Student Support" | "AI / Evaluation Work";
+  featured?: boolean;
+};
+
 export const site = {
   name: "Sebastian Davalos",
   role: "Computer Engineering Student at Florida State University",
   graduation: "Spring 2027",
   focus: "Software Engineering / AI & Data Systems / Full-Stack Development",
+  heroCallout: "You should try Inca Kola and Sublime sometime!",
+  profileTags: [
+    "Computer Engineering",
+    "AI/Data Systems",
+    "Full-Stack Development",
+    "Leadership",
+    "Local LLMs",
+    "Drawing",
+    "Gaming",
+    "Chewie",
+  ],
   nav: [
     { label: "Home", href: "#home" },
     { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
     { label: "Awards", href: "#highlights" },
     { label: "Experience", href: "#experience" },
-    { label: "Skills", href: "#skills" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
     { label: "Resume", href: "/Davalos_Sebastian_Resume.pdf" },
@@ -72,6 +93,7 @@ export const site = {
     {
       name: "StudyStack AI",
       label: "Full-stack AI study tool",
+      arcLabel: "Study Tool",
       description:
         "A study assistant for turning uploaded class materials into searchable notes, flashcards, and quizzes.",
       focus: "Designed around the student workflow: upload material, find the right context, and practice from it without jumping between tools.",
@@ -95,6 +117,7 @@ export const site = {
     {
       name: "The Actuary",
       label: "Machine learning analysis",
+      arcLabel: "AI / Data",
       description:
         "A machine learning project exploring claims data with classification, clustering, and anomaly detection.",
       focus: "Focused on comparing modeling approaches and surfacing patterns that could point to insurance risk.",
@@ -120,6 +143,7 @@ export const site = {
     {
       name: "SmartGallery",
       label: "AWS image analysis",
+      arcLabel: "Cloud Build",
       description:
         "An AWS-powered image analysis project that reads images from S3 and uses Rekognition to produce searchable labels.",
       focus: "Built as a practical CLI workflow for making image collections easier to inspect and organize.",
@@ -148,6 +172,8 @@ export const site = {
       dates: "May 2026 - Present",
       description:
         "Help guide a technical student community through project planning, research-oriented collaboration, and practical workshops.",
+      category: "Technical Leadership",
+      featured: true,
     },
     {
       role: "ACM Project Lead",
@@ -155,6 +181,8 @@ export const site = {
       dates: "May 2026 - Present",
       description:
         "Lead student software work by helping teams turn ideas into scoped projects with clear next steps.",
+      category: "Technical Leadership",
+      featured: true,
     },
     {
       role: "Lab Workshop Coordinator",
@@ -162,6 +190,8 @@ export const site = {
       dates: "February 2026 - May 2026",
       description:
         "Organize hands-on workshops that connect software skills with research-focused technical learning.",
+      category: "Technical Leadership",
+      featured: true,
     },
     {
       role: "Project Contributor",
@@ -169,8 +199,42 @@ export const site = {
       dates: "Spring 2026",
       description:
         "Contribute to cloud-focused student projects while building hands-on experience with AWS services and deployment workflows.",
+      category: "Technical Leadership",
+      featured: true,
     },
-  ],
+    {
+      role: "Handshake AI Fellow",
+      organization: "Handshake",
+      dates: "June 2026 – Present",
+      description:
+        "Contribute to AI training and evaluation workflows through flexible project-based tasks.",
+      category: "AI / Evaluation Work",
+    },
+    {
+      role: "Community Assistant",
+      organization: "American Campus Communities",
+      dates: "June 15, 2026 – Present",
+      description:
+        "Support resident-facing operations, communication, and community engagement.",
+      category: "Campus & Student Support",
+    },
+    {
+      role: "Illuminate Ambassador",
+      organization: "Florida State University",
+      dates: "June 22, 2026 – August 2026",
+      description:
+        "Assist with CARE-related student support, outreach, and campus programming.",
+      category: "Campus & Student Support",
+    },
+    {
+      role: "Engineering Orientation Aide",
+      organization: "Florida State University",
+      dates: "May 2026 – June 2026, Volunteer",
+      description:
+        "Volunteered with engineering orientation programming and helped incoming engineering students navigate campus resources.",
+      category: "Campus & Student Support",
+    },
+  ] satisfies ExperienceItem[],
   skills: {
     Languages: ["Python", "Java", "C/C++", "SQL", "TypeScript", "JavaScript"],
     "Full-Stack": [

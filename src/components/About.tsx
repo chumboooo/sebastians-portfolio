@@ -1,4 +1,8 @@
 import Image from "next/image";
+import { ChapterLabel } from "@/components/ChapterLabel";
+import { MangaCard } from "@/components/MangaCard";
+import { MarginSticker } from "@/components/MarginSticker";
+import { SketchBadge } from "@/components/SketchBadge";
 import { site } from "@/data/site";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 
@@ -11,17 +15,24 @@ export function About() {
   const art = imagesByLabel.Art;
 
   return (
-    <section className="relative isolate scroll-mt-28 px-5 py-24 sm:px-6 sm:py-32 lg:px-8" id="about">
-      <div className="mx-auto max-w-6xl">
-        <RevealOnScroll className="rounded-[1.75rem] border border-gray-200 bg-white p-6 shadow-sm dark:border-white/10 dark:bg-[#18181b] sm:p-8 lg:p-10">
+    <section className="relative isolate scroll-mt-28 overflow-hidden px-5 py-24 sm:px-6 sm:py-32 lg:px-8" id="about">
+      <MarginSticker variant="llama" className="left-5 top-1/4 -rotate-3" />
+      <MarginSticker variant="sun" className="bottom-24 right-5 rotate-3" />
+      <div className="relative z-10 mx-auto max-w-6xl">
+        <RevealOnScroll variant="panel">
+          <ChapterLabel chapter="05" title="About" />
+          <MangaCard className="overflow-hidden p-6 sm:p-8 lg:p-10">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="max-w-2xl">
-              <h2 className="text-3xl font-semibold tracking-tight text-[#211d1e] dark:text-stone-50 sm:text-5xl">
-                About Me!
-              </h2>
-              <div className="mt-6 grid gap-5 text-base leading-8 text-gray-700 dark:text-stone-300 lg:text-[1.03rem]">
+              <div className="grid gap-5 text-base leading-8 text-gray-700 dark:text-stone-300 lg:text-[1.03rem]">
                 {site.about.split("\n\n").map((paragraph) => (
                   <p key={paragraph}>{paragraph}</p>
+                ))}
+              </div>
+
+              <div className="mt-7 flex flex-wrap gap-2.5" aria-label="Interests and focus areas">
+                {site.profileTags.map((tag) => (
+                  <SketchBadge key={tag}>{tag}</SketchBadge>
                 ))}
               </div>
             </div>
@@ -29,7 +40,7 @@ export function About() {
             <div className="grid gap-4 sm:grid-cols-2">
               {friends ? (
                 <div
-                  className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 dark:border-white/10 dark:bg-[#121214] sm:col-span-2"
+                  className="overflow-hidden border-2 border-[#211d1e] bg-[#efefeb] dark:border-stone-200 dark:bg-[#121214] sm:col-span-2"
                 >
                   <div className="relative aspect-[16/9] bg-white dark:bg-[#18181b]">
                     <Image
@@ -40,7 +51,7 @@ export function About() {
                       className="object-contain p-2"
                     />
                   </div>
-                  <p className="border-t border-gray-200/80 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.16em] text-gray-500 dark:border-white/10 dark:text-stone-400">
+                  <p className="font-accent border-t-2 border-[#211d1e] px-4 py-2.5 text-xs uppercase text-gray-600 dark:border-stone-200 dark:text-stone-400">
                     {friends.label}
                   </p>
                 </div>
@@ -49,7 +60,7 @@ export function About() {
               {[chewie, art].filter(Boolean).map((image) => (
                 <div
                   key={image!.label}
-                  className="overflow-hidden rounded-2xl border border-gray-200 bg-gray-50 dark:border-white/10 dark:bg-[#121214]"
+                  className="overflow-hidden border-2 border-[#211d1e] bg-[#efefeb] dark:border-stone-200 dark:bg-[#121214]"
                 >
                   <div className="relative aspect-[4/5] bg-white dark:bg-[#18181b]">
                     <Image
@@ -60,13 +71,14 @@ export function About() {
                       className="object-contain p-2"
                     />
                   </div>
-                  <p className="border-t border-gray-200/80 px-4 py-2.5 text-xs font-bold uppercase tracking-[0.16em] text-gray-500 dark:border-white/10 dark:text-stone-400">
+                  <p className="font-accent border-t-2 border-[#211d1e] px-4 py-2.5 text-xs uppercase text-gray-600 dark:border-stone-200 dark:text-stone-400">
                     {image!.label}
                   </p>
                 </div>
               ))}
             </div>
           </div>
+          </MangaCard>
         </RevealOnScroll>
       </div>
     </section>

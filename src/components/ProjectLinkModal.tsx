@@ -84,11 +84,14 @@ export function ProjectLinkModal({
         aria-modal="true"
         aria-labelledby={dialogTitleId}
         aria-describedby={dialogDescriptionId}
-        className="max-h-[calc(100dvh-4rem)] w-full max-w-sm overflow-y-auto rounded-[1.35rem] border border-gray-200 bg-white p-6 text-[#211d1e] shadow-2xl dark:border-white/10 dark:bg-[#18181b] dark:text-stone-50"
+        className="manga-panel max-h-[calc(100dvh-4rem)] w-full max-w-sm overflow-x-hidden overflow-y-auto p-6 text-[#211d1e] dark:text-stone-50"
         onClick={(event) => event.stopPropagation()}
         onKeyDown={handleDialogKeyDown}
       >
-        <h4 id={dialogTitleId} className="text-2xl font-semibold tracking-tight">
+        <p className="font-accent text-xs uppercase text-[#782f40] dark:text-[#ceb888]">
+          Select destination
+        </p>
+        <h4 id={dialogTitleId} className="font-accent mt-2 text-2xl">
           {project.name}
         </h4>
         <p
@@ -105,7 +108,7 @@ export function ProjectLinkModal({
               href={action.href}
               target="_blank"
               rel="noreferrer"
-              className="rounded-full border border-gray-200 bg-gray-50 px-4 py-3 text-center text-sm font-semibold text-[#211d1e] transition hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-white/10 dark:bg-[#101012] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#18181b]"
+              className="border-2 border-[#211d1e] bg-[#f7f7f4] px-4 py-3 text-center text-sm font-bold text-[#211d1e] shadow-[3px_3px_0_rgba(33,29,30,0.16)] transition hover:-translate-y-0.5 hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-stone-200 dark:bg-[#111113] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#18181b]"
             >
               {action.label}
             </a>

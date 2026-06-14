@@ -2,7 +2,22 @@ import type { Metadata } from "next";
 import Script from "next/script";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { IBM_Plex_Sans, RocknRoll_One } from "next/font/google";
 import "./globals.css";
+
+const bodyFont = IBM_Plex_Sans({
+  subsets: ["latin"],
+  weight: ["400", "500", "600", "700"],
+  variable: "--font-body",
+  display: "swap",
+});
+
+const accentFont = RocknRoll_One({
+  subsets: ["latin"],
+  weight: "400",
+  variable: "--font-accent",
+  display: "swap",
+});
 
 export const metadata: Metadata = {
   title: "Sebastian Davalos | Portfolio",
@@ -36,7 +51,7 @@ export default function RootLayout({
           {themeScript}
         </Script>
       </head>
-      <body>
+      <body className={`${bodyFont.variable} ${accentFont.variable}`}>
         {children}
         <Analytics />
         <SpeedInsights />
