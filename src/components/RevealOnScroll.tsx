@@ -16,8 +16,8 @@ export function RevealOnScroll({
   variant = "default",
 }: RevealOnScrollProps) {
   const ref = useRef<HTMLDivElement | null>(null);
-  const isRevealedRef = useRef(false);
-  const [isRevealed, setIsRevealed] = useState(false);
+  const isRevealedRef = useRef(true);
+  const [isRevealed, setIsRevealed] = useState(true);
 
   useEffect(() => {
     const node = ref.current;
@@ -25,7 +25,10 @@ export function RevealOnScroll({
       return;
     }
 
-    if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+    if (
+      window.matchMedia("(prefers-reduced-motion: reduce)").matches ||
+      !("IntersectionObserver" in window)
+    ) {
       return;
     }
 
@@ -46,12 +49,12 @@ export function RevealOnScroll({
   return (
     <div
       ref={ref}
-      className={`${className} transform-gpu transition-[opacity,transform] duration-[400ms] ease-out motion-reduce:translate-y-0 motion-reduce:rotate-0 motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none ${
+      className={`${className} transition-transform duration-[400ms] ease-out motion-reduce:translate-y-0 motion-reduce:rotate-0 motion-reduce:scale-100 motion-reduce:opacity-100 motion-reduce:transition-none ${
         isRevealed
           ? "translate-y-0 rotate-0 scale-100 opacity-100"
           : variant === "panel"
-            ? "translate-y-3 rotate-[0.25deg] scale-[0.985] opacity-[0.42]"
-            : "translate-y-4 opacity-[0.45]"
+            ? "translate-y-3 rotate-[0.25deg] scale-[0.985] opacity-100"
+            : "translate-y-4 opacity-100"
       }`}
       style={{ transitionDelay: `${delay}ms` }}
     >

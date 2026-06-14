@@ -12,7 +12,7 @@ export function Projects() {
         <RevealOnScroll>
           <ChapterLabel chapter="01" title="Featured Work" />
         </RevealOnScroll>
-        <div className="grid min-w-0 gap-5 md:grid-cols-2 2xl:grid-cols-3">
+        <div className="grid min-w-0 grid-cols-1 gap-5 md:grid-cols-2 lg:grid-cols-3">
           {site.projects.map((project, index) => (
             <RevealOnScroll
               key={project.name}

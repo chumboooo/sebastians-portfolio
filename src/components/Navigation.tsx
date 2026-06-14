@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { type MouseEvent, useEffect, useState } from "react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { site } from "@/data/site";
@@ -27,6 +27,68 @@ export function Navigation() {
     return () => document.removeEventListener("keydown", onKeyDown);
   }, []);
 
+  useEffect(() => {
+    if (pathname !== "/") {
+      return;
+    }
+
+    const hero = document.getElementById("home");
+    if (!hero) {
+      return;
+    }
+
+    let heroHasLeftViewport = hero.getBoundingClientRect().bottom <= 0;
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (!entry.isIntersecting) {
+          heroHasLeftViewport = true;
+          return;
+        }
+
+        if (heroHasLeftViewport && window.location.hash) {
+          window.history.replaceState(
+            null,
+            "",
+            `${window.location.pathname}${window.location.search}`,
+          );
+        }
+      },
+      { threshold: 0.35 },
+    );
+
+    observer.observe(hero);
+    return () => observer.disconnect();
+  }, [pathname]);
+
+  function handleSectionClick(
+    event: MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) {
+    if (pathname !== "/" || !href.startsWith("#")) {
+      return;
+    }
+
+    const target = document.querySelector<HTMLElement>(href);
+    if (!target) {
+      return;
+    }
+
+    event.preventDefault();
+    const prefersReducedMotion = window.matchMedia(
+      "(prefers-reduced-motion: reduce)",
+    ).matches;
+
+    target.scrollIntoView({
+      behavior: prefersReducedMotion ? "auto" : "smooth",
+      block: "start",
+    });
+    window.history.replaceState(
+      null,
+      "",
+      `${window.location.pathname}${window.location.search}`,
+    );
+  }
+
   return (
     <header className="sticky top-0 z-50 px-4 py-4 sm:px-6 lg:px-8">
       <nav
@@ -40,6 +102,7 @@ export function Navigation() {
             <a
               key={item.label}
               href={resolveHref(item.href)}
+              onClick={(event) => handleSectionClick(event, item.href)}
               className="sketch-link px-3 py-2 text-sm font-semibold text-gray-700 transition hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:text-stone-300 dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
             >
               {item.label}
@@ -100,7 +163,10 @@ export function Navigation() {
               key={item.label}
               href={resolveHref(item.href)}
               className="border-b border-[#211d1e]/15 px-4 py-3 text-base font-semibold text-[#211d1e] transition last:border-b-0 hover:bg-[#782f40]/5 hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] dark:border-white/10 dark:text-stone-100 dark:hover:bg-[#ceb888]/10 dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888]"
-              onClick={() => setIsOpen(false)}
+              onClick={(event) => {
+                handleSectionClick(event, item.href);
+                setIsOpen(false);
+              }}
               tabIndex={isOpen ? undefined : -1}
             >
               {item.label}

@@ -24,7 +24,7 @@ export function MarginSticker({
 
   return (
     <div
-      className={`side-sticker pointer-events-none absolute hidden h-20 w-20 text-[#782f40] 2xl:block dark:text-[#ceb888] ${className}`}
+      className={`side-sticker pointer-events-none absolute hidden text-[#782f40] xl:block xl:h-14 xl:w-14 2xl:h-20 2xl:w-20 dark:text-[#ceb888] ${className}`}
       aria-hidden="true"
     >
       {variant === "mountains" ? (

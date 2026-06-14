@@ -57,7 +57,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
                 src={project.screenshot.src}
                 alt={project.screenshot.alt}
                 fill
-                sizes="(min-width: 1024px) 540px, (min-width: 640px) 90vw, 100vw"
+                sizes="(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 100vw"
                 className="object-contain p-2 transition duration-200 group-hover:scale-[1.015]"
               />
             ) : (
