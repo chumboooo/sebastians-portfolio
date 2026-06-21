@@ -108,8 +108,8 @@ export function Skills() {
         </RevealOnScroll>
 
         <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-fr">
-          <RevealOnScroll variant="panel" className="md:col-span-2 lg:col-span-2 lg:row-span-2">
-            <article className="loadout-panel manga-panel speed-lines group flex h-full min-h-72 flex-col overflow-hidden p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(120,47,64,0.18)] dark:hover:shadow-[10px_10px_0_rgba(206,184,136,0.2)] sm:p-8">
+          <RevealOnScroll variant="panel" className="md:col-span-2 lg:col-span-2">
+            <article className="loadout-panel manga-panel speed-lines group flex h-full flex-col overflow-hidden p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(120,47,64,0.18)] dark:hover:shadow-[10px_10px_0_rgba(206,184,136,0.2)] sm:p-8">
               <div className="relative flex h-full flex-col">
                 <div className="flex items-start justify-between gap-6 border-b-2 border-[#211d1e]/25 pb-5 dark:border-white/20">
                   <div>
@@ -125,7 +125,7 @@ export function Skills() {
                   </svg>
                 </div>
 
-                <ul className="mt-auto grid grid-cols-2 gap-x-5 gap-y-3 pt-7 sm:grid-cols-4">
+                <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-4">
                   {coreStack.map((skill) => (
                     <li
                       key={skill}
