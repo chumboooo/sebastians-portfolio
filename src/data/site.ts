@@ -31,7 +31,7 @@ export const site = {
   role: "Computer Engineering Student at Florida State University",
   graduation: "Spring 2027",
   focus: "Software Engineering / AI & Data Systems / Full-Stack Development",
-  heroCallout: "You should try Inca Cola and Sublime sometime!",
+  heroCallout: "You should try Inca Kola and Sublime sometime!",
   profileTags: [
     "Computer Engineering",
     "AI/Data Systems",
