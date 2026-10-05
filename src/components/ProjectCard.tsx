@@ -13,7 +13,7 @@ type ProjectCardProps = {
 
 export function ProjectCard({ project, index }: ProjectCardProps) {
   const [isOpen, setIsOpen] = useState(false);
-  const cardRef = useRef<HTMLElement | null>(null);
+  const triggerRef = useRef<HTMLButtonElement>(null);
   const projectLinks = [
     { label: "View Code", href: project.githubUrl },
     { label: project.demoLabel ?? "Open Demo", href: project.demoUrl },
@@ -23,6 +23,8 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
   const hasProjectLinks = projectLinks.length > 0;
 
   const openProjectDialog = useCallback(() => {
+    // Safari does not always focus buttons on pointer activation.
+    triggerRef.current?.focus({ preventScroll: true });
     setIsOpen(true);
   }, []);
 
@@ -30,35 +32,29 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
     setIsOpen(false);
   }, []);
 
-  const handleCardKeyDown = (event: React.KeyboardEvent<HTMLElement>) => {
-    if (event.key === "Enter" || event.key === " ") {
-      event.preventDefault();
-      openProjectDialog();
-    }
-  };
-
   return (
     <>
       <article
-        ref={cardRef}
-        role="button"
-        tabIndex={0}
-        aria-haspopup="dialog"
-        aria-expanded={isOpen}
-        aria-label={`Open links for ${project.name}`}
-        onClick={openProjectDialog}
-        onKeyDown={handleCardKeyDown}
-        className="manga-panel manga-project group flex h-full flex-col overflow-hidden text-left outline-none transition duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(120,47,64,0.22)] focus-visible:ring-2 focus-visible:ring-[#782f40] focus-visible:ring-offset-4 dark:hover:shadow-[10px_10px_0_rgba(206,184,136,0.24)] dark:focus-visible:ring-[#ceb888] dark:focus-visible:ring-offset-[#101012]"
+        className="manga-panel manga-project group flex h-full flex-col overflow-hidden text-left transition-transform duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(120,47,64,0.22)] dark:hover:shadow-[10px_10px_0_rgba(206,184,136,0.24)]"
       >
-        <div className="speed-lines relative border-b-2 border-[#211d1e] bg-[#efefeb] p-3 transition-colors dark:border-stone-200 dark:bg-[#121214]">
+        <button
+          ref={triggerRef}
+          type="button"
+          aria-haspopup="dialog"
+          aria-expanded={isOpen}
+          aria-label={`Open links and details for ${project.name}`}
+          onClick={openProjectDialog}
+          className="absolute inset-0 z-20 cursor-pointer rounded-[inherit] outline-none focus-visible:ring-2 focus-visible:ring-inset focus-visible:ring-[#782f40] dark:focus-visible:ring-[#ceb888]"
+        />
+        <div className="speed-lines relative border-b-2 border-[#211d1e] bg-[#efefeb] p-3 dark:border-stone-200 dark:bg-[#121214]">
           <div className="relative grid aspect-[2/1] place-items-center overflow-hidden border border-[#211d1e]/35 bg-white dark:border-white/25 dark:bg-[#18181b]">
             {project.screenshot?.src ? (
               <Image
                 src={project.screenshot.src}
                 alt={project.screenshot.alt}
                 fill
-                sizes="(min-width: 1024px) 31vw, (min-width: 768px) 46vw, 100vw"
-                className="object-contain p-2 transition duration-200 group-hover:scale-[1.015]"
+                sizes="(min-width: 1024px) calc((95vw - 140px) / 3), (min-width: 768px) calc((95vw - 88px) / 2), calc(95vw - 32px)"
+                className="object-contain p-2 transition-transform duration-200 group-hover:scale-[1.015]"
               />
             ) : (
               <div className="px-6 py-8 text-center">
@@ -71,6 +67,11 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
               </div>
             )}
           </div>
+          {project.screenshot?.caption ? (
+            <p className="relative mt-2 text-xs leading-5 text-gray-700 dark:text-stone-300">
+              {project.screenshot.caption}
+            </p>
+          ) : null}
         </div>
 
         <div className="flex flex-1 flex-col p-5 sm:p-6">
@@ -108,7 +109,7 @@ export function ProjectCard({ project, index }: ProjectCardProps) {
             </div>
 
             <div className="mt-5">
-              <span className="font-accent inline-flex items-center gap-2 border-b-2 border-[#782f40] pb-1 text-xs text-[#782f40] transition group-hover:gap-3 dark:border-[#ceb888] dark:text-[#ceb888]">
+              <span className="font-accent inline-flex items-center gap-2 border-b-2 border-[#782f40] pb-1 text-xs text-[#782f40] dark:border-[#ceb888] dark:text-[#ceb888]">
                 {hasProjectLinks ? "Open project links" : "Links coming soon"}
                 <span aria-hidden="true">&rarr;</span>
               </span>

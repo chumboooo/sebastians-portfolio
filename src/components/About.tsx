@@ -3,7 +3,7 @@ import { ChapterLabel } from "@/components/ChapterLabel";
 import { MangaCard } from "@/components/MangaCard";
 import { MarginSticker } from "@/components/MarginSticker";
 import { SketchBadge } from "@/components/SketchBadge";
-import { site } from "@/data/site";
+import { site, type SiteImage } from "@/data/site";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 export function About() {
@@ -15,12 +15,12 @@ export function About() {
   const art = imagesByLabel.Art;
 
   return (
-    <section className="relative isolate scroll-mt-28 overflow-hidden px-5 py-24 sm:px-6 sm:py-32 lg:px-8" id="about">
+    <section className="relative isolate scroll-mt-28 overflow-hidden px-5 py-16 sm:px-6 sm:py-24 lg:px-8 lg:py-32" id="about">
       <MarginSticker variant="llama" className="left-5 top-1/4 -rotate-3" />
       <MarginSticker variant="sun" className="bottom-24 right-5 rotate-3" />
       <div className="relative z-10 mx-auto max-w-6xl">
         <RevealOnScroll variant="panel">
-          <ChapterLabel chapter="05" title="About" />
+          <ChapterLabel chapter="05" title="About Me!" />
           <MangaCard className="overflow-hidden p-6 sm:p-8 lg:p-10">
           <div className="grid gap-12 lg:grid-cols-[0.95fr_1.05fr] lg:items-center">
             <div className="max-w-2xl">
@@ -47,7 +47,7 @@ export function About() {
                       src={friends.src}
                       alt={friends.alt}
                       fill
-                      sizes="(min-width: 1024px) 520px, (min-width: 640px) 80vw, 100vw"
+                      sizes="(min-width: 1280px) 520px, (min-width: 1024px) 45vw, calc(100vw - 100px)"
                       className="object-contain p-2"
                     />
                   </div>
@@ -57,22 +57,22 @@ export function About() {
                 </div>
               ) : null}
 
-              {[chewie, art].filter(Boolean).map((image) => (
+              {[chewie, art].filter((image): image is SiteImage => Boolean(image)).map((image) => (
                 <div
-                  key={image!.label}
+                  key={image.label}
                   className="overflow-hidden border-2 border-[#211d1e] bg-[#efefeb] dark:border-stone-200 dark:bg-[#121214]"
                 >
                   <div className="relative aspect-[4/5] bg-white dark:bg-[#18181b]">
                     <Image
-                      src={image!.src}
-                      alt={image!.alt}
+                      src={image.src}
+                      alt={image.alt}
                       fill
-                      sizes="(min-width: 1024px) 250px, (min-width: 640px) 40vw, 100vw"
+                      sizes="(min-width: 1280px) 250px, (min-width: 1024px) 22vw, (min-width: 640px) calc((100vw - 120px) / 2), calc(100vw - 100px)"
                       className="object-contain p-2"
                     />
                   </div>
                   <p className="font-accent border-t-2 border-[#211d1e] px-4 py-2.5 text-xs uppercase text-gray-600 dark:border-stone-200 dark:text-stone-400">
-                    {image!.label}
+                    {image.label}
                   </p>
                 </div>
               ))}

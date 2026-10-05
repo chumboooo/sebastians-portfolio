@@ -58,14 +58,14 @@ function isExternalLink(href: string) {
 
 export function Contact() {
   return (
-    <section className="relative isolate flex min-h-[58vh] scroll-mt-28 items-center overflow-hidden px-5 py-20 sm:px-6 sm:py-24 lg:px-8" id="contact">
+    <section className="relative isolate flex scroll-mt-28 items-center overflow-hidden px-5 py-16 sm:px-6 sm:py-24 lg:min-h-[58vh] lg:px-8" id="contact">
       <MarginSticker variant="sail" className="left-6 top-24 -rotate-3" />
       <RevealOnScroll className="relative z-10 mx-auto w-full max-w-4xl">
         <ChapterLabel chapter="06" title="Contact" className="justify-center" />
         <MangaCard className="speed-lines p-6 text-center sm:p-8 lg:p-10">
         <div className="mx-auto max-w-3xl">
           <p className="text-base text-gray-600 dark:text-stone-400">
-            Reach out through email, LinkedIn, or GitHub.
+            {site.contactCta}
           </p>
         </div>
 
@@ -76,7 +76,7 @@ export function Contact() {
                 href={link.href}
                 target={isExternalLink(link.href) ? "_blank" : undefined}
                 rel={isExternalLink(link.href) ? "noreferrer" : undefined}
-                className="group inline-flex min-w-36 items-center justify-center gap-3 border-2 border-[#211d1e] bg-[#fffefa] px-5 py-3 text-sm font-bold text-[#211d1e] shadow-[3px_3px_0_rgba(33,29,30,0.18)] transition hover:-translate-y-0.5 hover:border-[#782f40] hover:text-[#782f40] hover:shadow-[5px_5px_0_rgba(120,47,64,0.2)] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-stone-200 dark:bg-[#111113] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:hover:shadow-[5px_5px_0_rgba(206,184,136,0.2)] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
+                className="group inline-flex min-w-36 items-center justify-center gap-3 border-2 border-[#211d1e] bg-[#fffefa] px-5 py-3 text-sm font-bold text-[#211d1e] shadow-[3px_3px_0_rgba(33,29,30,0.18)] transition-transform hover:-translate-y-0.5 hover:border-[#782f40] hover:text-[#782f40] hover:shadow-[5px_5px_0_rgba(120,47,64,0.2)] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-stone-200 dark:bg-[#111113] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:hover:shadow-[5px_5px_0_rgba(206,184,136,0.2)] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
               >
                 <ContactLinkIcon icon={link.icon} />
                 <span>{link.label}</span>

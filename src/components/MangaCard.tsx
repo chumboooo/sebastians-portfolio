@@ -1,4 +1,4 @@
-import type { ComponentPropsWithoutRef, ElementType, ReactNode } from "react";
+import type { ComponentPropsWithoutRef, ReactNode } from "react";
 
 type MangaCardProps = ComponentPropsWithoutRef<"div"> & {
   as?: "div" | "article" | "section";
@@ -11,7 +11,7 @@ export function MangaCard({
   className = "",
   ...props
 }: MangaCardProps) {
-  const Component = as as ElementType;
+  const Component = as;
 
   return (
     <Component className={`manga-panel ${className}`} {...props}>

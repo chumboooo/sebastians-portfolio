@@ -6,7 +6,7 @@ import { RevealOnScroll } from "@/components/RevealOnScroll";
 
 export function Projects() {
   return (
-    <section className="relative isolate scroll-mt-28 overflow-hidden px-3 py-24 sm:px-4 sm:py-32 lg:px-5" id="projects">
+    <section className="relative isolate scroll-mt-28 overflow-hidden px-3 py-16 sm:px-4 sm:py-24 lg:px-5 lg:py-32" id="projects">
       <HalftoneBackground className="-left-48 top-24 h-96 w-96 -rotate-12 opacity-60" />
       <div className="relative z-10 mx-auto w-full max-w-[95vw]">
         <RevealOnScroll>

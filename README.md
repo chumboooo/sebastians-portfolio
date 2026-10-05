@@ -74,6 +74,20 @@ My resume is served from:
 /Davalos_Sebastian_Resume.pdf
 ```
 
+Replace the file at `public/Davalos_Sebastian_Resume.pdf` to update the resume.
+The navigation and hero use the same path from `src/data/site.ts`.
+
+## Checking Changes
+
+Run lint and build, then use `npm run start` to review the production build.
+Check both themes at 375px, 390px, 430px, 768px, and desktop widths.
+Use the keyboard to open project cards, cycle through modal links, close with
+Escape, and verify focus returns to the card. Also check the mobile menu,
+reduced-motion settings, local resume, and external project demos.
+
+The social preview is generated from site data at `/opengraph-image`.
+Canonical URLs, `/sitemap.xml`, and `/robots.txt` use `site.links.portfolio`.
+
 ## Deployment
 
 This site is deployed with Vercel. Pushing changes to the connected GitHub repo triggers a new deployment.

@@ -12,6 +12,7 @@
 
 # testing
 /coverage
+/.portfolio-backups/
 
 # next.js
 /.next/

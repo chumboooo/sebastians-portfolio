@@ -9,10 +9,10 @@ function getPreferredTheme(): Theme {
     return "light";
   }
 
-  const stored = window.localStorage.getItem("theme");
-  if (stored === "light" || stored === "dark") {
-    return stored;
-  }
+  try {
+    const stored = window.localStorage.getItem("theme");
+    if (stored === "light" || stored === "dark") return stored;
+  } catch { /* Theme switching still works when storage is unavailable. */ }
 
   return window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
 }
@@ -23,17 +23,27 @@ function applyTheme(theme: Theme) {
 }
 
 function subscribeToTheme(callback: () => void) {
-  window.addEventListener("storage", callback);
+  function syncPreferredTheme() {
+    applyTheme(getPreferredTheme());
+    callback();
+  }
+  function onStorage(event: StorageEvent) {
+    if (event.key === "theme" || event.key === null) syncPreferredTheme();
+  }
+  const media = window.matchMedia("(prefers-color-scheme: dark)");
+  media.addEventListener("change", syncPreferredTheme);
+  window.addEventListener("storage", onStorage);
   window.addEventListener("theme-change", callback);
 
   return () => {
-    window.removeEventListener("storage", callback);
+    media.removeEventListener("change", syncPreferredTheme);
+    window.removeEventListener("storage", onStorage);
     window.removeEventListener("theme-change", callback);
   };
 }
 
 function getThemeSnapshot(): Theme | null {
-  return getPreferredTheme();
+  return document.documentElement.classList.contains("dark") ? "dark" : "light";
 }
 
 function getServerThemeSnapshot(): Theme | null {
@@ -50,7 +60,9 @@ export function ThemeToggle() {
   function toggleTheme() {
     const activeTheme = theme ?? getPreferredTheme();
     const nextTheme = activeTheme === "dark" ? "light" : "dark";
-    window.localStorage.setItem("theme", nextTheme);
+    try {
+      window.localStorage.setItem("theme", nextTheme);
+    } catch { /* Use the current theme for this tab without persisting it. */ }
     applyTheme(nextTheme);
     window.dispatchEvent(new Event("theme-change"));
   }
@@ -63,7 +75,7 @@ export function ThemeToggle() {
   return (
     <button
       type="button"
-      className="font-accent inline-flex h-10 items-center gap-2 border border-[#211d1e]/50 bg-white px-3 text-xs text-[#211d1e] transition hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-white/30 dark:bg-[#18181b] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
+      className="font-accent inline-flex h-11 min-w-20 items-center justify-center gap-2 border border-[#211d1e]/50 bg-white px-3 text-xs text-[#211d1e] hover:border-[#782f40] hover:text-[#782f40] focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-white/30 dark:bg-[#18181b] dark:text-stone-100 dark:hover:border-[#ceb888] dark:hover:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#101012]"
       aria-label={ariaLabel}
       onClick={toggleTheme}
     >

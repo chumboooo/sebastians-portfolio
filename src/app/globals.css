@@ -29,7 +29,7 @@
 
 html {
   scroll-behavior: smooth;
-  scroll-padding-top: 96px;
+  scrollbar-gutter: stable;
 }
 
 @media (prefers-reduced-motion: reduce) {
@@ -101,6 +101,42 @@ a {
   box-shadow: var(--panel-shadow);
 }
 
+.project-dialog {
+  position: fixed;
+  inset: 0;
+  width: 100%;
+  height: 100dvh;
+  max-width: none;
+  max-height: none;
+  margin: 0;
+  border: 0;
+  padding: 2rem 1.25rem;
+  background: transparent;
+}
+
+.project-dialog[open] {
+  display: grid;
+  place-items: center;
+}
+
+.project-dialog::backdrop {
+  background: rgba(16, 16, 18, 0.55);
+  backdrop-filter: blur(4px);
+}
+
+.dark .project-dialog::backdrop {
+  background: rgba(0, 0, 0, 0.65);
+}
+
+.project-modal-panel {
+  animation: modal-enter 160ms ease-out;
+}
+
+@keyframes modal-enter {
+  from { opacity: 0; transform: translateY(6px) scale(0.99); }
+  to { opacity: 1; transform: none; }
+}
+
 .manga-panel::after {
   position: absolute;
   top: -2px;
@@ -135,7 +171,7 @@ a {
 }
 
 .manga-project:hover::before,
-.manga-project:focus-visible::before {
+.manga-project:focus-within::before {
   opacity: 0.24;
 }
 
@@ -231,17 +267,11 @@ a {
 .llama-ear {
   transform-box: fill-box;
   transform-origin: bottom center;
-  animation: llama-ear-wiggle 6.4s ease-in-out 1.4s infinite;
-}
-
-.llama-ear-right {
-  animation-delay: 1.55s;
 }
 
 .hero-name-motion {
   position: relative;
   display: inline-block;
-  animation: hero-name-float 4.4s ease-in-out 650ms infinite;
 }
 
 .hero-name-motion::after {
@@ -252,10 +282,9 @@ a {
   height: 3px;
   background: var(--garnet);
   content: "";
-  opacity: 0.32;
-  transform: rotate(-0.6deg) scaleX(0.58);
+  opacity: 0.5;
+  transform: rotate(-0.6deg) scaleX(1);
   transform-origin: left;
-  animation: hero-name-ink 4.4s ease-in-out 650ms infinite;
 }
 
 .dark .hero-name-motion::after {
@@ -320,9 +349,9 @@ a {
   height: 2px;
   background: linear-gradient(90deg, var(--garnet), rgba(120, 47, 64, 0.14), transparent);
   content: "";
-  transform: rotate(-0.4deg) scaleX(0.72);
+  opacity: 0.8;
+  transform: rotate(-0.4deg) scaleX(1);
   transform-origin: left;
-  animation: role-ink-pulse 4.6s ease-in-out 900ms infinite;
 }
 
 .dark .hero-role-underline::after {
@@ -391,59 +420,6 @@ a {
   }
 }
 
-@keyframes hero-name-float {
-  0%,
-  100% {
-    transform: translate3d(0, 0, 0);
-  }
-
-  50% {
-    transform: translate3d(0, -4px, 0);
-  }
-}
-
-@keyframes hero-name-ink {
-  0%,
-  100% {
-    opacity: 0.28;
-    transform: rotate(-0.6deg) scaleX(0.58);
-  }
-
-  50% {
-    opacity: 0.68;
-    transform: rotate(-0.6deg) scaleX(1);
-  }
-}
-
-@keyframes role-ink-pulse {
-  0%,
-  100% {
-    opacity: 0.62;
-    transform: rotate(-0.4deg) scaleX(0.72);
-  }
-
-  50% {
-    opacity: 1;
-    transform: rotate(-0.4deg) scaleX(1);
-  }
-}
-
-@keyframes llama-ear-wiggle {
-  0%,
-  84%,
-  100% {
-    transform: rotate(0deg);
-  }
-
-  89% {
-    transform: rotate(-3deg);
-  }
-
-  94% {
-    transform: rotate(2deg);
-  }
-}
-
 .sketch-link {
   position: relative;
 }
@@ -487,6 +463,19 @@ a {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation: none !important;
+    transition: none !important;
+  }
+
+  .manga-project:hover,
+  .loadout-panel:hover,
+  a:hover,
+  .group:hover img {
+    translate: none;
+    scale: none;
+  }
+
   .sketch-link::after {
     transition: none;
   }

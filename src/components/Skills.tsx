@@ -5,22 +5,11 @@ import { SketchBadge } from "@/components/SketchBadge";
 import { site } from "@/data/site";
 import { RevealOnScroll } from "@/components/RevealOnScroll";
 
-const coreStack = [
-  "TypeScript",
-  "Next.js",
-  "React",
-  "Tailwind CSS",
-  "Python",
-  "Supabase",
-  "PostgreSQL",
-  "Vercel",
-];
-
 const skillGroups = [
   { title: "Languages", source: "Languages", icon: "code" },
-  { title: "AI / Data", source: "AI / Data", icon: "data" },
-  { title: "Cloud / Workflow", source: "Cloud / Workflow", icon: "cloud" },
-  { title: "Backend / Full-Stack", source: "Full-Stack", icon: "stack" },
+  { title: "Frameworks / Libraries", source: "Frameworks / Libraries", icon: "stack" },
+  { title: "Cloud / Tools", source: "Cloud / Tools", icon: "cloud" },
+  { title: "Engineering Concepts", source: "Engineering Concepts", icon: "data" },
 ] as const;
 
 function SkillGroupIcon({ icon }: { icon: (typeof skillGroups)[number]["icon"] }) {
@@ -70,7 +59,7 @@ function SkillPanel({
 }) {
   return (
     <article
-      className={`loadout-panel manga-panel group overflow-hidden p-5 transition duration-200 hover:-translate-y-1 hover:shadow-[9px_9px_0_rgba(120,47,64,0.18)] dark:hover:shadow-[9px_9px_0_rgba(206,184,136,0.2)] sm:p-6 ${className}`}
+      className={`loadout-panel manga-panel group overflow-hidden p-5 transition-transform duration-200 hover:-translate-y-1 hover:shadow-[9px_9px_0_rgba(120,47,64,0.18)] dark:hover:shadow-[9px_9px_0_rgba(206,184,136,0.2)] sm:p-6 ${className}`}
     >
       <div className="absolute inset-0 halftone-field opacity-20" aria-hidden="true" />
       <div className="relative">
@@ -95,7 +84,7 @@ function SkillPanel({
 export function Skills() {
   return (
     <section
-      className="relative isolate scroll-mt-28 overflow-hidden border-y-2 border-[#211d1e] bg-[#efefeb] px-5 py-24 text-[#211d1e] dark:border-stone-200 dark:bg-[#151517] dark:text-stone-50 sm:px-6 sm:py-32 lg:px-8"
+      className="relative isolate scroll-mt-28 overflow-hidden border-y-2 border-[#211d1e] bg-[#efefeb] px-5 py-16 text-[#211d1e] dark:border-stone-200 dark:bg-[#151517] dark:text-stone-50 sm:px-6 sm:py-24 lg:px-8 lg:py-32"
       id="skills"
     >
       <HalftoneBackground className="-right-32 top-12 h-[32rem] w-[32rem] rotate-6 opacity-55" />
@@ -104,47 +93,15 @@ export function Skills() {
 
       <div className="relative z-10 mx-auto max-w-6xl">
         <RevealOnScroll>
-          <ChapterLabel chapter="02" title="Toolkit" />
+          <ChapterLabel chapter="03" title="Toolkit" />
         </RevealOnScroll>
 
-        <div className="grid gap-5 md:grid-cols-2 lg:grid-cols-3 lg:auto-rows-fr">
-          <RevealOnScroll variant="panel" className="md:col-span-2 lg:col-span-2">
-            <article className="loadout-panel manga-panel speed-lines group flex h-full flex-col overflow-hidden p-6 transition duration-200 hover:-translate-y-1 hover:shadow-[10px_10px_0_rgba(120,47,64,0.18)] dark:hover:shadow-[10px_10px_0_rgba(206,184,136,0.2)] sm:p-8">
-              <div className="relative flex h-full flex-col">
-                <div className="flex items-start justify-between gap-6 border-b-2 border-[#211d1e]/25 pb-5 dark:border-white/20">
-                  <div>
-                    <p className="font-accent text-xs uppercase text-[#782f40] dark:text-[#ceb888]">
-                      Developer loadout
-                    </p>
-                    <h3 className="font-accent mt-2 text-3xl text-[#211d1e] dark:text-stone-50 sm:text-4xl">
-                      Core Stack
-                    </h3>
-                  </div>
-                  <svg aria-hidden="true" className="h-12 w-12 shrink-0 text-[#782f40] dark:text-[#ceb888]" viewBox="0 0 48 48" fill="none">
-                    <path d="m24 5 16 8-16 8-16-8 16-8ZM8 22l16 8 16-8M8 31l16 8 16-8" stroke="currentColor" strokeWidth="2.5" strokeLinejoin="round" />
-                  </svg>
-                </div>
-
-                <ul className="mt-6 grid grid-cols-2 gap-x-5 gap-y-4 sm:grid-cols-4">
-                  {coreStack.map((skill) => (
-                    <li
-                      key={skill}
-                      className="border-b border-[#211d1e]/20 pb-2 text-sm font-bold text-[#342f31] dark:border-white/15 dark:text-stone-200"
-                    >
-                      {skill}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </article>
-          </RevealOnScroll>
-
+        <div className="grid gap-5 md:auto-rows-fr md:grid-cols-2">
           {skillGroups.map((group, index) => (
             <RevealOnScroll
               key={group.title}
               delay={Math.min(index * 25, 75)}
               variant="panel"
-              className={index === 3 ? "md:col-span-2 lg:col-span-1" : ""}
             >
               <SkillPanel
                 title={group.title}

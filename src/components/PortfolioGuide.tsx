@@ -5,7 +5,7 @@ type PortfolioGuideProps = {
 export function PortfolioGuide({ callout }: PortfolioGuideProps) {
   return (
     <aside
-      className="guide-card manga-panel relative mx-auto w-full max-w-sm overflow-hidden px-5 pb-5 pt-4 lg:ml-auto"
+      className="guide-card manga-panel relative mx-auto w-full max-w-[18rem] overflow-hidden px-5 pb-5 pt-4 sm:max-w-sm lg:ml-auto"
       aria-label="Portfolio llama guide"
     >
       <div className="absolute inset-0 halftone-field opacity-35" aria-hidden="true" />
@@ -23,7 +23,7 @@ export function PortfolioGuide({ callout }: PortfolioGuideProps) {
           </span>
         </div>
 
-        <div className="mx-auto w-48 text-[#211d1e] dark:text-stone-100">
+        <div className="mx-auto w-36 text-[#211d1e] dark:text-stone-100 sm:w-48">
           <svg
             aria-hidden="true"
             viewBox="0 0 240 280"

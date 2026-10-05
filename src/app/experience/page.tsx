@@ -8,12 +8,26 @@ import { Navigation } from "@/components/Navigation";
 import { site, type ExperienceItem } from "@/data/site";
 
 export const metadata: Metadata = {
-  title: "Experience | Sebastian Davalos",
-  description:
-    "Technical leadership, AI evaluation, and campus support experience from Sebastian Davalos.",
+  title: site.experiencePage.title,
+  description: site.experiencePage.description,
+  alternates: { canonical: `${site.links.portfolio}/experience` },
+  openGraph: {
+    type: "website",
+    url: `${site.links.portfolio}/experience`,
+    title: site.experiencePage.title,
+    description: site.experiencePage.description,
+    images: ["/opengraph-image"],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: site.experiencePage.title,
+    description: site.experiencePage.description,
+    images: ["/opengraph-image"],
+  },
 };
 
 const categories: ExperienceItem["category"][] = [
+  "Research & Technical Experience",
   "Technical Leadership",
   "AI / Evaluation Work",
   "Campus & Student Support",
@@ -23,24 +37,24 @@ export default function ExperiencePage() {
   return (
     <>
       <Navigation />
-      <main className="relative isolate overflow-hidden px-5 pb-24 pt-16 sm:px-6 sm:pb-32 sm:pt-20 lg:px-8">
+      <main id="main-content" tabIndex={-1} className="relative isolate overflow-hidden px-5 pb-24 pt-16 outline-none sm:px-6 sm:pb-32 sm:pt-20 lg:px-8">
         <MarginSticker variant="mountains" className="left-5 top-48 -rotate-2" />
         <MarginSticker variant="sun" className="right-5 top-[38rem] rotate-3" />
         <MarginSticker variant="hummingbird" className="bottom-40 left-5 -rotate-3" />
 
         <div className="relative z-10 mx-auto max-w-6xl">
           <ChapterLabel
-            chapter="04"
+            chapter="02"
             title="Full Experience"
             level={1}
             className="mb-5 sm:mb-6"
           />
           <p className="max-w-2xl text-base leading-7 text-gray-700 dark:text-stone-300">
-            Technical leadership, AI evaluation work, and campus support roles.
+            {site.experiencePage.intro}
           </p>
           <Link
             href="/#experience"
-            className="font-accent mt-7 inline-flex items-center gap-2 border-b-2 border-[#782f40] pb-1 text-sm text-[#782f40] transition hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-[#ceb888] dark:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#111113]"
+            className="font-accent mt-7 inline-flex items-center gap-2 border-b-2 border-[#782f40] pb-1 text-sm text-[#782f40] transition-transform hover:-translate-y-0.5 focus:outline-none focus:ring-2 focus:ring-[#782f40] focus:ring-offset-4 dark:border-[#ceb888] dark:text-[#ceb888] dark:focus:ring-[#ceb888] dark:focus:ring-offset-[#111113]"
           >
             <span aria-hidden="true">&larr;</span>
             Back to portfolio

@@ -4,6 +4,7 @@ export type Project = {
   arcLabel?: string;
   description: string;
   focus: string;
+  details?: string[];
   stack: string[];
   githubUrl?: string;
   demoUrl?: string;
@@ -15,6 +16,7 @@ export type SiteImage = {
   src: string;
   alt: string;
   label: string;
+  caption?: string;
 };
 
 export type ExperienceItem = {
@@ -22,22 +24,35 @@ export type ExperienceItem = {
   organization: string;
   dates: string;
   description: string;
-  category: "Technical Leadership" | "Campus & Student Support" | "AI / Evaluation Work";
+  details?: string[];
+  tags?: string[];
+  previousRole?: { role: string; dates: string };
+  category: "Research & Technical Experience" | "Technical Leadership" | "Campus & Student Support" | "AI / Evaluation Work";
   featured?: boolean;
 };
 
+const resumePath = "/Davalos_Sebastian_Resume.pdf";
+
 export const site = {
   name: "Sebastian Davalos",
+  school: "Florida State University",
+  degree: "B.S. in Computer Engineering",
   role: "Computer Engineering Student at Florida State University",
-  graduation: "Spring 2027",
-  focus: "Software Engineering / AI & Data Systems / Full-Stack Development",
+  graduation: "Spring 2029",
+  focus: "Software Engineering / AI & ML / Cloud Systems / Computer Vision",
+  bio: "Computer Engineering student at FSU focused on software engineering, AI/ML, cloud systems, and computer vision.",
+  seo: {
+    title: "Sebastian Davalos | Portfolio",
+    description: "Personal portfolio for Sebastian Davalos, a Computer Engineering student at Florida State University focused on software development, AI/ML, cloud systems, and computer vision.",
+  },
+  experiencePage: {
+    title: "Experience | Sebastian Davalos",
+    description: "Undergraduate research, technical leadership, hardware repair, and campus support experience from Sebastian Davalos.",
+    intro: "Research, technical leadership, hardware repair, and campus support roles.",
+  },
   heroCallout: "You should try Inca Kola and Sublime sometime!",
   profileTags: [
-    "Computer Engineering",
-    "AI/Data Systems",
-    "Full-Stack Development",
-    "Leadership",
-    "Local LLMs",
+    "Local AI",
     "Drawing",
     "Gaming",
     "Chewie",
@@ -45,17 +60,18 @@ export const site = {
   nav: [
     { label: "Home", href: "#home" },
     { label: "Projects", href: "#projects" },
+    { label: "Experience", href: "#experience" },
     { label: "Skills", href: "#skills" },
     { label: "Awards", href: "#highlights" },
-    { label: "Experience", href: "#experience" },
     { label: "About", href: "#about" },
     { label: "Contact", href: "#contact" },
-    { label: "Resume", href: "/Davalos_Sebastian_Resume.pdf" },
+    { label: "Resume", href: resumePath },
   ],
   links: {
-    resume: "/Davalos_Sebastian_Resume.pdf",
+    portfolio: "https://www.sebasad.com",
+    resume: resumePath,
     github: "https://github.com/chumboooo",
-    linkedin: "https://www.linkedin.com/in/sebastian-davalos/",
+    linkedin: "https://www.linkedin.com/in/sebastian-davalos",
     email: "mailto:sad24p@fsu.edu",
   },
   images: {
@@ -85,7 +101,7 @@ export const site = {
       {
         src: "/images/nextbudplanning.jpg",
         alt: "NextBud planning notes from the NextEra Energy Hackathon",
-        label: "Planning",
+        label: "Planning / Whiteboard",
       },
     ] satisfies SiteImage[],
   },
@@ -95,16 +111,13 @@ export const site = {
       label: "Full-stack AI study tool",
       arcLabel: "Study Tool",
       description:
-        "A study assistant for turning uploaded class materials into searchable notes, flashcards, and quizzes.",
-      focus: "Designed around the student workflow: upload material, find the right context, and practice from it without jumping between tools.",
-      stack: [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Supabase",
-        "OpenAI API",
-        "Vercel",
+        "Full-stack AI study platform for PDF-grounded chat, flashcards, quizzes, and persistent study threads.",
+      focus: "Hybrid PDF retrieval, source-grounded responses, and private study history.",
+      details: [
+        "Developed a PDF pipeline for extraction, chunking, reprocessing, hybrid retrieval, and source-grounded AI responses.",
+        "Implemented Supabase authentication, private storage, secure preview/download, and persistent Q&A history.",
       ],
+      stack: ["Next.js", "TypeScript", "Supabase", "OpenAI"],
       githubUrl: "https://github.com/chumboooo/studystack-ai",
       demoUrl: "https://studystack-aii.vercel.app/",
       demoLabel: "Open App",
@@ -115,22 +128,39 @@ export const site = {
       },
     },
     {
+      name: "SmartGallery",
+      label: "AWS image analysis",
+      arcLabel: "Cloud Build",
+      description:
+        "Python CLI that analyzes S3-hosted images with AWS Rekognition and returns labels and confidence data.",
+      focus: "Configurable inputs and raw JSON exports for testing and response inspection.",
+      details: [
+        "Added configurable inputs and raw JSON exports for testing, debugging, and response inspection.",
+        "Contributed within a 40-person development environment using GitHub branches, pull requests, and shared review workflows.",
+      ],
+      stack: ["Python", "AWS Rekognition", "Amazon S3", "Git/GitHub"],
+      githubUrl: "https://github.com/FSU-CloudClub/CloudClub-Spring26-ImageManagementWebApp",
+      demoUrl: "https://s26-aws-cloud-club-smartgallery.netlify.app/demo",
+      demoLabel: "Open Demo",
+      screenshot: {
+        src: "/images/smartgallery.png",
+        alt: "SmartGallery team application showing the demo dashboard",
+        label: "SmartGallery",
+        caption: "Team application shown · My contribution: Python CLI",
+      },
+    },
+    {
       name: "The Actuary",
       label: "Machine learning analysis",
       arcLabel: "AI / Data",
       description:
-        "A machine learning project exploring claims data with classification, clustering, and anomaly detection.",
-      focus: "Focused on comparing modeling approaches and surfacing patterns that could point to insurance risk.",
-      stack: [
-        "Python",
-        "Pandas",
-        "NumPy",
-        "Scikit-learn",
-        "Matplotlib",
-        "Random Forest",
-        "K-Means",
-        "Isolation Forest",
+        "Insurance-risk ML analysis combining classification, clustering, and anomaly detection.",
+      focus: "98.5% Random Forest accuracy; roughly 5% of records flagged for review.",
+      details: [
+        "Trained a Random Forest model using applicant features including age, BMI, and smoking status, achieving 98.5% accuracy.",
+        "Applied K-means to identify risk segments and Isolation Forest to flag roughly 5% of records as anomalous cases.",
       ],
+      stack: ["Python", "Scikit-learn", "Pandas"],
       githubUrl: "https://github.com/Drexana/15A---Health-Insurance-Claims",
       demoUrl: "https://the-actuary-health-insurance-claims.streamlit.app/",
       demoLabel: "Open App",
@@ -138,23 +168,6 @@ export const site = {
         src: "/images/theactuary.png",
         alt: "The Actuary project screenshot",
         label: "The Actuary",
-      },
-    },
-    {
-      name: "SmartGallery",
-      label: "AWS image analysis",
-      arcLabel: "Cloud Build",
-      description:
-        "An AWS-powered image analysis project that reads images from S3 and uses Rekognition to produce searchable labels.",
-      focus: "Built as a practical CLI workflow for making image collections easier to inspect and organize.",
-      stack: ["Python", "boto3", "AWS Rekognition", "Amazon S3", "CLI tooling"],
-      githubUrl: "https://github.com/FSU-CloudClub/CloudClub-Spring26-ImageManagementWebApp",
-      demoUrl: "https://s26-aws-cloud-club-smartgallery.netlify.app/demo",
-      demoLabel: "Open Demo",
-      screenshot: {
-        src: "/images/smartgallery.png",
-        alt: "SmartGallery project screenshot",
-        label: "SmartGallery",
       },
     },
   ] satisfies Project[],
@@ -167,40 +180,68 @@ export const site = {
   ],
   experience: [
     {
-      role: "Co-President",
-      organization: "CompNeuroSociety at FSU",
-      dates: "May 2026 - Present",
+      role: "Undergraduate Researcher — Dr. Zhengguang Lu Lab / UROP",
+      organization: "Florida State University, Department of Physics",
+      dates: "Fall 2026 – Present",
       description:
-        "Help guide a technical student community through project planning, research-oriented collaboration, and practical workshops.",
+        "Prepare graphene-flake datasets and train RF-DETR object detection in Roboflow for van der Waals quantum-material assembly. Validation: 86.8% mAP@50.",
+      details: [
+        "Annotated and curated roughly 400–500 optical microscope images at 20–50× magnification, distinguishing graphene flakes from dust, contamination, and chip edges.",
+        "Prepared training, validation, and test splits in Roboflow and trained/evaluated multiple RF-DETR Object Detection Medium iterations.",
+        "Validation metrics: 86.8% mAP@50, 74.4% precision, 85.1% recall, and 79.4% F1.",
+      ],
+      tags: ["Computer Vision", "Object Detection", "RF-DETR", "Roboflow"],
+      category: "Research & Technical Experience",
+      featured: true,
+    },
+    {
+      role: "Project Chair",
+      organization: "AWS Cloud Club at ACM at FSU",
+      dates: "May 2026 – Present",
+      description:
+        "Conceived and co-lead Matchob, an AI-assisted resume-tailoring browser extension with 15+ contributors across frontend, backend/AWS, AI, data, and QA/testing.",
+      details: [
+        "Coordinate project scope, technical ownership, contributor onboarding, GitHub issues/epics, milestones, and cross-team integration.",
+        "Matchob is designed to compare resumes with job descriptions, explain evidence-grounded recommendations, and avoid inventing unsupported experience.",
+        "Help define AWS architecture with API Gateway, Lambda, Amazon Bedrock, S3, IAM, and CloudWatch; the extension uses WXT, React, and TypeScript.",
+      ],
+      tags: ["WXT", "React", "TypeScript", "AWS", "Amazon Bedrock"],
+      category: "Technical Leadership",
+      featured: true,
+    },
+    {
+      role: "Co-President",
+      organization: "CompNeuroSociety at Florida State University",
+      dates: "Apr. 2026 – Present",
+      previousRole: { role: "Workshop Coordinator", dates: "Feb. 2026 – May 2026" },
+      description:
+        "Co-lead a roughly 40-member computational neuroscience organization, coordinating board operations, GBMs, funding, and programming. The organization was awarded a $13,000 ORCA grant.",
+      details: [
+        "Coordinate event logistics and room scheduling for events that can draw 20+ attendees, delegating outreach to fellow officers.",
+        "The Open Research Community Accelerator grant supports open-science and reproducible-research training.",
+        "Support workshop leaders in an 8-workshop series covering calculus, Python, Brian2, AI in research, and computational neuroscience fundamentals, with accompanying member mini-projects.",
+      ],
       category: "Technical Leadership",
       featured: true,
     },
     {
       role: "ACM Project Lead",
       organization: "Association for Computing Machinery at FSU",
-      dates: "May 2026 - Present",
+      dates: "2026 – Present",
       description:
-        "Lead student software work by helping teams turn ideas into scoped projects with clear next steps.",
+        "Lead software project development, contributor onboarding, Git/GitHub workflows, task delegation, and technical communication for ACM at FSU.",
+      details: [
+        "Helped run a GitHub/Codex workshop covering repo setup, cloning, Git workflows, and AI-assisted development.",
+      ],
       category: "Technical Leadership",
-      featured: true,
     },
     {
-      role: "Lab Workshop Coordinator",
-      organization: "CompNeuroSociety at FSU",
-      dates: "February 2026 - May 2026",
+      role: "Technician Intern",
+      organization: "Campus Phone Repair",
+      dates: "Oct. 2026 – Present",
       description:
-        "Organize hands-on workshops that connect software skills with research-focused technical learning.",
-      category: "Technical Leadership",
-      featured: true,
-    },
-    {
-      role: "Project Contributor",
-      organization: "AWS Club at FSU",
-      dates: "Spring 2026",
-      description:
-        "Contribute to cloud-focused student projects while building hands-on experience with AWS services and deployment workflows.",
-      category: "Technical Leadership",
-      featured: true,
+        "Support diagnosis and repair of smartphones, tablets, and computers; gain hands-on experience with hardware troubleshooting, component replacement, and device repair workflows.",
+      category: "Research & Technical Experience",
     },
     {
       role: "Handshake AI Fellow",
@@ -236,40 +277,29 @@ export const site = {
     },
   ] satisfies ExperienceItem[],
   skills: {
-    Languages: ["Python", "Java", "C/C++", "SQL", "TypeScript", "JavaScript"],
-    "Full-Stack": [
-      "Next.js",
-      "React",
-      "Tailwind CSS",
-      "Supabase",
-      "Express",
-      "Node.js",
-      "PostgreSQL",
-      "Prisma",
+    Languages: ["Python", "C/C++", "Java", "SQL", "TypeScript"],
+    "Frameworks / Libraries": ["React", "Next.js", "Scikit-learn", "Pandas", "NumPy"],
+    "Engineering Concepts": [
+      "Machine Learning",
+      "Computer Vision",
+      "Object Detection",
+      "Data Structures & Algorithms",
+      "RESTful APIs",
     ],
-    "AI / Data": [
-      "Pandas",
-      "NumPy",
-      "Scikit-learn",
-      "Matplotlib",
-      "Random Forest",
-      "K-Means",
-      "Isolation Forest",
-      "Retrieval-Augmented Generation",
-    ],
-    "Cloud / Workflow": [
-      "AWS Rekognition",
+    "Cloud / Tools": [
+      "AWS",
+      "AWS Lambda",
+      "Amazon Bedrock",
       "Amazon S3",
-      "boto3",
-      "Vercel",
+      "API Gateway",
+      "Supabase",
       "Git",
       "GitHub",
-      "Pull Requests",
-      "Docker",
-      "Ollama / Local AI",
+      "Linux",
+      "Roboflow",
     ],
   },
   about:
-    "Hello! I am a sophomore Computer Engineering major at FSU with an interest in software development and AI/ML. I’m part of two technical organizations at FSU, where I hold leadership positions, most notably as Co-President of CompNeuroSociety and Project Lead in ACM.\n\nIn my free time, I enjoy exploring new technologies, such as experimenting with local AI tools and running language models on my own PC. I also enjoy drawing panels from my favorite manga and anime, especially One Piece and JJK, gaming, and all the joy that comes with owning my dog named Chewie.\n\nIf you would like to know more about me or ask about my projects, please feel free to send me a message through any of the platforms shown below!",
-  contactCta: "",
+    "Hello! I’m a Computer Engineering student at FSU focused on software engineering, AI/ML, cloud systems, and computer vision.\n\nOutside of class, I enjoy experimenting with local AI tools, drawing panels from One Piece and JJK, gaming, and spending time with my dog, Chewie.",
+  contactCta: "Reach out through email, LinkedIn, or GitHub.",
 };
